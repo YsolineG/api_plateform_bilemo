@@ -24,6 +24,10 @@ class Customer
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'customers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +65,18 @@ class Customer
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
