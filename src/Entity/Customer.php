@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 #[ApiResource]
@@ -16,10 +17,10 @@ class Customer
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $first_name;
+    private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $last_name;
+    private $lastname;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $email;
@@ -35,24 +36,24 @@ class Customer
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstname;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstname): self
     {
-        $this->first_name = $first_name;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastname;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastname): self
     {
-        $this->last_name = $last_name;
+        $this->lastname = $lastname;
 
         return $this;
     }
