@@ -7,7 +7,27 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: [
+        "get",
+        "post" => [
+            "security" => "is_granted('ROLE_ADMIN')",
+            "security_message" => "Only admins can add products."
+        ],
+    ],
+    itemOperations: [
+        "get",
+        "put" => [
+            "security" => "is_granted('ROLE_ADMIN')",
+            "security_message" => "Only admins can edit products."
+        ],
+        "delete" => [
+            "security" => "is_granted('ROLE_ADMIN')",
+            "security_message" => "Only admins can delete products."
+        ]
+    ],
+    attributes: ["security" => "is_granted('ROLE_USER')"],
+)]
 class Product
 {
     #[ORM\Id]
