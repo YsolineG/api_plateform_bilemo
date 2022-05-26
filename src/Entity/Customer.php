@@ -3,12 +3,36 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Controller\DeleteCustomerController;
+use App\Controller\GetCustomerController;
+use App\Controller\GetCustomersController;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    collectionOperations: [
+        'get' => [
+            'method' => 'GET',
+            'path' => '/customers',
+            'controller' => GetCustomersController::class
+        ],
+        'post'
+    ],
+    itemOperations: [
+        'get' => [
+            'method' => 'GET',
+            'path' => '/customers/{id}',
+            'controller' => GetCustomerController::class
+        ],
+        'delete' => [
+            'method' => 'DELETE',
+            'path' => '/customers/{id}',
+            'controller' => DeleteCustomerController::class
+        ]
+    ]
+)]
 class Customer
 {
     #[ORM\Id]
