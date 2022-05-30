@@ -36,13 +36,13 @@ class Product
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private ?string $name;
 
     #[ORM\Column(type: 'integer')]
-    private $price;
+    private ?int $price;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $description;
+    private ?string $description;
 
     public function getId(): ?int
     {

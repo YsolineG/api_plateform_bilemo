@@ -8,7 +8,6 @@ use App\Controller\GetCustomerController;
 use App\Controller\GetCustomersController;
 use App\Repository\CustomerRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 #[ApiResource(
@@ -41,17 +40,17 @@ class Customer
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $firstname;
+    private ?string $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $lastname;
+    private ?string $lastname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $email;
+    private ?string $email;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'customers')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     public function getId(): ?int
     {
