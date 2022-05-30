@@ -5,3 +5,18 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
+    http_cache:
+        public: ~
+
+        invalidation:
+            enabled: false
+            varnish_urls: [ ]
+            request_options: [ ]
+
+        etag: true
+
+        max_age: 3600
+
+        shared_max_age: 3600
+
+        vary: [ 'Accept' ]
