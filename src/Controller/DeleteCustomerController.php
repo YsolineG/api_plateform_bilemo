@@ -18,17 +18,17 @@ class DeleteCustomerController extends AbstractController
     $this->security = $security;
     }
 
-    public function __invoke(Customer $data, EntityManagerInterface $em): JsonResponse
+    public function __invoke(Customer $data, EntityManagerInterface $entityManager): JsonResponse
     {
         $userId = $this->security->getUser()->getId();
 
         if($userId === $data->getUser()->getId()) {
-            $em->remove($data);
-            $em->flush();
+            $entityManager->remove($data);
+            $entityManager->flush();
 
             return $this->json(null, Response::HTTP_NO_CONTENT);
-        } else {
-            return $this->json('Acces interdit', Response::HTTP_FORBIDDEN);
         }
+
+        return $this->json('Acces interdit', Response::HTTP_FORBIDDEN);
     }
 }
