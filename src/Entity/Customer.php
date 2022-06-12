@@ -40,17 +40,17 @@ class Customer
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $firstname;
+    private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $lastname;
+    private $lastname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $email;
+    private $email;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'customers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user;
+    private $user;
 
     public function getId(): ?int
     {
