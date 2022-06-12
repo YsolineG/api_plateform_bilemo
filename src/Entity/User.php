@@ -28,16 +28,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private ?string $username;
+    private $username;
 
     #[ORM\Column(type: 'json')]
-    private array $roles = [];
+    private $roles = [];
 
     #[ORM\Column(type: 'string')]
-    private string $password;
+    private $password;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Customer::class, orphanRemoval: true)]
-    private ArrayCollection $customers;
+    private $customers;
 
     public function __construct()
     {
