@@ -12,25 +12,17 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 #[ApiResource(
     collectionOperations: [
-        'get' => [
-            'method' => 'GET',
-            'path' => '/customers',
-            'controller' => GetCustomersController::class
-        ],
+        'get',
         'post'
     ],
     itemOperations: [
         'get' => [
-            'method' => 'GET',
-            'path' => '/customers/{id}',
-            'controller' => GetCustomerController::class
+            'requirements' => ['id' => '\d+'],
         ],
         'delete' => [
-            'method' => 'DELETE',
-            'path' => '/customers/{id}',
-            'controller' => DeleteCustomerController::class
+            'requirements' => ['id' => '\d+'],
         ]
-    ]
+    ],
 )]
 class Customer
 {

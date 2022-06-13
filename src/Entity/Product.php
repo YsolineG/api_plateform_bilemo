@@ -16,7 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
         ],
     ],
     itemOperations: [
-        "get",
+        "get" => [
+            'requirements' => ['id' => '\d+']
+        ],
         "put" => [
             "security" => "is_granted('ROLE_ADMIN')",
             "security_message" => "Only admins can edit products."
